@@ -10,8 +10,11 @@ import { Navbar } from "@/components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import BrowseJobs from "./pages/BrowseJobs";
 import StudentDashboard from "./pages/student/Dashboard";
+import StudentProfile from "./pages/student/Profile";
 import EmployerDashboard from "./pages/employer/Dashboard";
+import EmployerProfile from "./pages/employer/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -66,6 +69,7 @@ function AppRoutes() {
         <Route path="/login" element={user ? <DashboardRoute /> : <Login />} />
         <Route path="/register" element={user ? <DashboardRoute /> : <Register />} />
         <Route path="/dashboard" element={<DashboardRoute />} />
+        <Route path="/browse-jobs" element={<BrowseJobs />} />
         
         {/* Student Routes */}
         <Route 
@@ -76,6 +80,14 @@ function AppRoutes() {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/student/profile" 
+          element={
+            <ProtectedRoute role="student">
+              <StudentProfile />
+            </ProtectedRoute>
+          } 
+        />
         
         {/* Employer Routes */}
         <Route 
@@ -83,6 +95,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute role="employer">
               <EmployerDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/employer/profile" 
+          element={
+            <ProtectedRoute role="employer">
+              <EmployerProfile />
             </ProtectedRoute>
           } 
         />

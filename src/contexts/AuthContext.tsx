@@ -4,7 +4,7 @@ import { User } from '@/types';
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (email: string, password: string, role: 'student' | 'employer') => Promise<boolean>;
+  register: (email: string, password: string, role: 'student' | 'employer', profileData?: any) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -75,7 +75,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return false;
   };
 
-  const register = async (email: string, password: string, role: 'student' | 'employer'): Promise<boolean> => {
+  const register = async (
+    email: string, 
+    password: string, 
+    role: 'student' | 'employer',
+    profileData?: any
+  ): Promise<boolean> => {
     setIsLoading(true);
     
     // Demo registration logic
@@ -83,7 +88,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: Date.now().toString(),
       email,
       role,
-      profile: role === 'student' ? {
+      profile: profileData || (role === 'student' ? {
         firstName: '',
         lastName: '',
         university: '',
@@ -102,7 +107,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         location: '',
         contactPerson: '',
         phone: '',
-      }
+      })
     };
     
     setUser(newUser);
