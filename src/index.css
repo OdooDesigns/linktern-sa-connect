@@ -2,41 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Linktern Design System - Modern internship marketplace with blue accents */
 
 @layer base {
   :root {
+    /* Core Brand Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 218 25% 15%;
 
+    /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 218 25% 15%;
+    --card-hover: 215 25% 97%;
 
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 218 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Brand - Professional Blue */
+    --primary: 215 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 84% 50%;
+    --primary-light: 215 84% 85%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Soft Gray */
+    --secondary: 215 16% 96%;
+    --secondary-foreground: 218 25% 15%;
+    --secondary-hover: 215 16% 92%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Elements */
+    --muted: 215 16% 96%;
+    --muted-foreground: 218 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Blue Variants */
+    --accent: 215 84% 95%;
+    --accent-foreground: 215 84% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 45 93% 47%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border & Input */
+    --border: 215 16% 88%;
+    --input: 215 16% 88%;
+    --input-focus: 215 84% 56%;
+    --ring: 215 84% 56%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 84% 56%), hsl(215 84% 66%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 84% 56% / 0.1), hsl(215 84% 66% / 0.05));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(215 25% 99%));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(215 25% 15% / 0.08);
+    --shadow-medium: 0 8px 30px hsl(215 25% 15% / 0.12);
+    --shadow-strong: 0 16px 40px hsl(215 25% 15% / 0.16);
+    --shadow-primary: 0 8px 25px hsl(215 84% 56% / 0.25);
+
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
