@@ -15,6 +15,7 @@ import StudentDashboard from "./pages/student/Dashboard";
 import StudentProfile from "./pages/student/Profile";
 import EmployerDashboard from "./pages/employer/Dashboard";
 import EmployerProfile from "./pages/employer/Profile";
+import EmployerBrowseTalents from "./pages/employer/BrowseTalents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -103,6 +104,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute role="employer">
               <EmployerProfile />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/employer/browse-talents" 
+          element={
+            <ProtectedRoute role="employer">
+              <EmployerBrowseTalents />
             </ProtectedRoute>
           } 
         />
