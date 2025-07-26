@@ -16,6 +16,7 @@ import StudentProfile from "./pages/student/Profile";
 import EmployerDashboard from "./pages/employer/Dashboard";
 import EmployerProfile from "./pages/employer/Profile";
 import EmployerBrowseTalents from "./pages/employer/BrowseTalents";
+import CompanyDetails from "./pages/CompanyDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ function AppRoutes() {
         <Route path="/register" element={user ? <DashboardRoute /> : <Register />} />
         <Route path="/dashboard" element={<DashboardRoute />} />
         <Route path="/browse-jobs" element={<BrowseJobs />} />
+        <Route path="/company/:id" element={<CompanyDetails />} />
         
         {/* Student Routes */}
         <Route 

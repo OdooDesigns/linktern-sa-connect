@@ -291,12 +291,18 @@ export default function StudentDashboard() {
                             </Badge>
                             <span className="text-xs text-muted-foreground">{job.posted}</span>
                           </div>
-                          <div className="flex flex-wrap gap-1 mt-2">
+                         <div className="flex flex-wrap gap-1 mt-2">
                             {job.skills.map((skill) => (
                               <Badge key={skill} variant="outline" className="text-xs">
                                 {skill}
                               </Badge>
                             ))}
+                          </div>
+                          <div className="flex gap-2 mt-3">
+                            <Button size="sm" className="flex-1">Apply</Button>
+                            <Button variant="outline" size="sm" asChild>
+                              <Link to="/company/1">View Company</Link>
+                            </Button>
                           </div>
                         </div>
                       </div>
