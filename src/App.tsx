@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import BrowseJobs from "./pages/BrowseJobs";
 import StudentDashboard from "./pages/student/Dashboard";
 import StudentProfile from "./pages/student/Profile";
+import StudentCompanies from "./pages/student/Companies";
 import EmployerDashboard from "./pages/employer/Dashboard";
 import EmployerProfile from "./pages/employer/Profile";
 import EmployerBrowseTalents from "./pages/employer/BrowseTalents";
@@ -88,6 +89,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute role="student">
               <StudentProfile />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/student/companies" 
+          element={
+            <ProtectedRoute role="student">
+              <StudentCompanies />
             </ProtectedRoute>
           } 
         />
