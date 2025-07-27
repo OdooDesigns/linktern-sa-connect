@@ -17,6 +17,7 @@ import StudentCompanies from "./pages/student/Companies";
 import EmployerDashboard from "./pages/employer/Dashboard";
 import EmployerProfile from "./pages/employer/Profile";
 import EmployerBrowseTalents from "./pages/employer/BrowseTalents";
+import PostJob from "./pages/employer/PostJob";
 import CompanyDetails from "./pages/CompanyDetails";
 import NotFound from "./pages/NotFound";
 
@@ -115,6 +116,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute role="employer">
               <EmployerDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/employer/post-job" 
+          element={
+            <ProtectedRoute role="employer">
+              <PostJob />
             </ProtectedRoute>
           } 
         />
