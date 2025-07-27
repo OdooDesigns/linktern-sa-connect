@@ -121,11 +121,11 @@ export default function BrowseJobs() {
   };
 
   const JobCard = ({ job, isGridView }: { job: Job; isGridView: boolean }) => (
-    <Card className={`hover:shadow-medium transition-all cursor-pointer ${isGridView ? '' : 'flex'}`}>
+    <Card className={`hover:shadow-lg transition-all cursor-pointer ${isGridView ? '' : 'flex'}`}>
       <CardHeader className={isGridView ? '' : 'flex-1'}>
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
               <Building className="w-6 h-6 text-primary" />
             </div>
             <div>
@@ -167,7 +167,7 @@ export default function BrowseJobs() {
           </div>
         )}
 
-        <p className={`text-sm text-muted-foreground ${isGridView ? 'line-clamp-2' : 'line-clamp-1'}`}>
+        <p className={`text-sm text-muted-foreground ${isGridView ? 'truncate' : 'truncate'}`}>
           {job.description}
         </p>
 
