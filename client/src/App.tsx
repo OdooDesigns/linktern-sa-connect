@@ -89,7 +89,7 @@ function AppRoutes() {
         </Route>
         
         {/* Student Routes */}
-        {/* <Route path="/student/dashboard">
+        <Route path="/student/dashboard">
           <ProtectedRoute role="student">
             <StudentDashboard />
           </ProtectedRoute>
@@ -103,12 +103,17 @@ function AppRoutes() {
           <ProtectedRoute role="student">
             <StudentCompanies />
           </ProtectedRoute>
-        </Route> */}
+        </Route>
         
         {/* Employer Routes */}
-        {/* <Route path="/employer/dashboard">
+        <Route path="/employer/dashboard">
           <ProtectedRoute role="employer">
             <EmployerDashboard />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/employer/post-job">
+          <ProtectedRoute role="employer">
+            <PostJob />
           </ProtectedRoute>
         </Route>
         <Route path="/employer/profile">
@@ -120,73 +125,7 @@ function AppRoutes() {
           <ProtectedRoute role="employer">
             <EmployerBrowseTalents />
           </ProtectedRoute>
-        </Route> */}
-        <Route 
-          path="/student/dashboard" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/profile" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentProfile />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/companies" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentCompanies />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/browse" 
-          element={
-            <ProtectedRoute role="student">
-              <BrowseJobs />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* Employer Routes */}
-        <Route 
-          path="/employer/dashboard" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employer/post-job" 
-          element={
-            <ProtectedRoute role="employer">
-              <PostJob />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employer/profile" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerProfile />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employer/browse-talents" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerBrowseTalents />
-            </ProtectedRoute>
-          } 
-        />
+        </Route>
         
         {/* Catch-all route */}
         <Route>
