@@ -87,9 +87,9 @@ const demoJobs: Job[] = [
 
 export default function BrowseJobs() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [locationFilter, setLocationFilter] = useState('');
-  const [typeFilter, setTypeFilter] = useState('');
-  const [durationFilter, setDurationFilter] = useState('');
+  const [locationFilter, setLocationFilter] = useState('all');
+  const [typeFilter, setTypeFilter] = useState('all');
+  const [durationFilter, setDurationFilter] = useState('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [savedJobs, setSavedJobs] = useState<string[]>([]);
 
@@ -99,9 +99,9 @@ export default function BrowseJobs() {
                            job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            job.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
       
-      const matchesLocation = !locationFilter || job.location.toLowerCase().includes(locationFilter.toLowerCase());
-      const matchesType = !typeFilter || job.type === typeFilter;
-      const matchesDuration = !durationFilter || job.duration.includes(durationFilter);
+      const matchesLocation = locationFilter === 'all' || job.location.toLowerCase().includes(locationFilter.toLowerCase());
+      const matchesType = typeFilter === 'all' || job.type === typeFilter;
+      const matchesDuration = durationFilter === 'all' || job.duration.includes(durationFilter);
 
       return matchesSearch && matchesLocation && matchesType && matchesDuration;
     });
@@ -230,7 +230,7 @@ export default function BrowseJobs() {
                       <SelectValue placeholder="Location" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Locations</SelectItem>
+                      <SelectItem value="all">All Locations</SelectItem>
                       <SelectItem value="riyadh">Riyadh</SelectItem>
                       <SelectItem value="jeddah">Jeddah</SelectItem>
                       <SelectItem value="dammam">Dammam</SelectItem>
@@ -245,7 +245,7 @@ export default function BrowseJobs() {
                       <SelectValue placeholder="Work Type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Types</SelectItem>
+                      <SelectItem value="all">All Types</SelectItem>
                       <SelectItem value="remote">Remote</SelectItem>
                       <SelectItem value="on-site">On-site</SelectItem>
                       <SelectItem value="hybrid">Hybrid</SelectItem>
@@ -259,7 +259,7 @@ export default function BrowseJobs() {
                       <SelectValue placeholder="Duration" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Durations</SelectItem>
+                      <SelectItem value="all">All Durations</SelectItem>
                       <SelectItem value="3">3 months</SelectItem>
                       <SelectItem value="6">6 months</SelectItem>
                       <SelectItem value="12">12 months</SelectItem>
