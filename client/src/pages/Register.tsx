@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -17,7 +17,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { register } = useAuth();
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
   const { toast } = useToast();
 
   const handleRoleSelect = (selectedRole: 'student' | 'employer') => {
@@ -55,7 +55,7 @@ export default function Register() {
           title: "Account created!",
           description: "Welcome to Linktern. Please complete your profile.",
         });
-        navigate(`/${role}/profile`);
+        setLocation(`/${role}/profile`);
       } else {
         toast({
           title: "Registration failed",

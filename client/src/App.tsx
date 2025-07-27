@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "wouter";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { Navbar } from "@/components/Navbar";
 
@@ -37,11 +37,11 @@ function ProtectedRoute({ children, role }: { children: React.ReactNode; role?: 
   }
   
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Redirect to="/login" />;
   }
   
   if (role && user.role !== role) {
-    return <Navigate to="/dashboard" replace />;
+    return <Redirect to="/dashboard" />;
   }
   
   return <>{children}</>;
@@ -51,13 +51,13 @@ function DashboardRoute() {
   const { user } = useAuth();
   
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Redirect to="/login" />;
   }
   
   if (user.role === 'student') {
-    return <Navigate to="/student/dashboard" replace />;
+    return <Redirect to="/student/dashboard" />;
   } else {
-    return <Navigate to="/employer/dashboard" replace />;
+    return <Redirect to="/employer/dashboard" />;
   }
 }
 
@@ -67,69 +67,65 @@ function AppRoutes() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <Routes>
-        <Route path="/" element={user ? <DashboardRoute /> : <Home />} />
-        <Route path="/login" element={user ? <DashboardRoute /> : <Login />} />
-        <Route path="/register" element={user ? <DashboardRoute /> : <Register />} />
-        <Route path="/dashboard" element={<DashboardRoute />} />
-        <Route path="/browse-jobs" element={<BrowseJobs />} />
-        <Route path="/company/:id" element={<CompanyDetails />} />
+      <Switch>
+        <Route path="/">
+          {user ? <DashboardRoute /> : <Home />}
+        </Route>
+        <Route path="/login">
+          {user ? <DashboardRoute /> : <Login />}
+        </Route>
+        <Route path="/register">
+          {user ? <DashboardRoute /> : <Register />}
+        </Route>
+        <Route path="/dashboard">
+          <DashboardRoute />
+        </Route>
+        <Route path="/browse-jobs">
+          <BrowseJobs />
+        </Route>
+        <Route path="/company/:id">
+          <CompanyDetails />
+        </Route>
         
         {/* Student Routes */}
-        <Route 
-          path="/student/dashboard" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/profile" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentProfile />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/companies" 
-          element={
-            <ProtectedRoute role="student">
-              <StudentCompanies />
-            </ProtectedRoute>
-          } 
-        />
+        <Route path="/student/dashboard">
+          <ProtectedRoute role="student">
+            <StudentDashboard />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/student/profile">
+          <ProtectedRoute role="student">
+            <StudentProfile />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/student/companies">
+          <ProtectedRoute role="student">
+            <StudentCompanies />
+          </ProtectedRoute>
+        </Route>
         
         {/* Employer Routes */}
-        <Route 
-          path="/employer/dashboard" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employer/profile" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerProfile />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employer/browse-talents" 
-          element={
-            <ProtectedRoute role="employer">
-              <EmployerBrowseTalents />
-            </ProtectedRoute>
-          } 
-        />
+        <Route path="/employer/dashboard">
+          <ProtectedRoute role="employer">
+            <EmployerDashboard />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/employer/profile">
+          <ProtectedRoute role="employer">
+            <EmployerProfile />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/employer/browse-talents">
+          <ProtectedRoute role="employer">
+            <EmployerBrowseTalents />
+          </ProtectedRoute>
+        </Route>
         
         {/* Catch-all route */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
@@ -139,11 +135,11 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <Router>
         <AuthProvider>
           <AppRoutes />
         </AuthProvider>
-      </BrowserRouter>
+      </Router>
     </TooltipProvider>
   </QueryClientProvider>
 );
