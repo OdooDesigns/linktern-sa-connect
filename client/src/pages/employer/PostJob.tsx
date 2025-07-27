@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -59,7 +59,8 @@ const skillSuggestions = [
 ];
 
 export default function PostJob() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [location, setLocation] = useLocation(); 
   const [currentStep, setCurrentStep] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
@@ -168,7 +169,7 @@ export default function PostJob() {
       duration: 5000,
     });
 
-    navigate('/employer/dashboard');
+    setLocation('/employer/dashboard'); 
   };
 
   const handlePreview = () => {
@@ -209,7 +210,7 @@ export default function PostJob() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-4 mb-4">
-            <Button variant="ghost" onClick={() => navigate('/employer/dashboard')}>
+            <Button variant="ghost" onClick={() => setLocation('/employer/dashboard')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
             </Button>

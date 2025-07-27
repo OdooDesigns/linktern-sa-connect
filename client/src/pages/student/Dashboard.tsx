@@ -1,21 +1,27 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/contexts/AuthContext';
-import { Link } from 'wouter';
-import { 
-  Search, 
-  FileText, 
-  Building, 
-  Clock, 
-  CheckCircle, 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useAuth } from "@/contexts/AuthContext";
+import { Link } from "wouter";
+import {
+  Search,
+  FileText,
+  Building,
+  Clock,
+  CheckCircle,
   XCircle,
   Eye,
   Star,
   MapPin,
   Calendar,
-  TrendingUp
-} from 'lucide-react';
+  TrendingUp,
+} from "lucide-react";
 
 export default function StudentDashboard() {
   const { user } = useAuth();
@@ -24,59 +30,59 @@ export default function StudentDashboard() {
   // Mock data for dashboard
   const recentApplications = [
     {
-      id: '1',
-      jobTitle: 'Software Engineering Intern',
-      company: 'TechCorp Saudi',
-      appliedDate: '2024-01-15',
-      status: 'pending',
-      location: 'Riyadh'
+      id: "1",
+      jobTitle: "Software Engineering Intern",
+      company: "TechCorp Saudi",
+      appliedDate: "2024-01-15",
+      status: "pending",
+      location: "Riyadh",
     },
     {
-      id: '2',
-      jobTitle: 'Data Analyst Intern',
-      company: 'Saudi Data Solutions',
-      appliedDate: '2024-01-12',
-      status: 'accepted',
-      location: 'Jeddah'
+      id: "2",
+      jobTitle: "Data Analyst Intern",
+      company: "Saudi Data Solutions",
+      appliedDate: "2024-01-12",
+      status: "accepted",
+      location: "Jeddah",
     },
     {
-      id: '3',
-      jobTitle: 'UI/UX Design Intern',
-      company: 'Creative Hub',
-      appliedDate: '2024-01-10',
-      status: 'rejected',
-      location: 'Dammam'
-    }
+      id: "3",
+      jobTitle: "UI/UX Design Intern",
+      company: "Creative Hub",
+      appliedDate: "2024-01-10",
+      status: "rejected",
+      location: "Dammam",
+    },
   ];
 
   const recommendedJobs = [
     {
-      id: '1',
-      title: 'Frontend Developer Intern',
-      company: 'Innovation Labs',
-      location: 'Riyadh',
-      type: 'Remote',
-      skills: ['React', 'JavaScript'],
-      posted: '2 days ago',
-      logo: '🚀'
+      id: "1",
+      title: "Frontend Developer Intern",
+      company: "Innovation Labs",
+      location: "Riyadh",
+      type: "Remote",
+      skills: ["React", "JavaScript"],
+      posted: "2 days ago",
+      logo: "🚀",
     },
     {
-      id: '2',
-      title: 'Machine Learning Intern',
-      company: 'AI Solutions KSA',
-      location: 'Jeddah',
-      type: 'On-site',
-      skills: ['Python', 'TensorFlow'],
-      posted: '1 week ago',
-      logo: '🤖'
-    }
+      id: "2",
+      title: "Machine Learning Intern",
+      company: "AI Solutions KSA",
+      location: "Jeddah",
+      type: "On-site",
+      skills: ["Python", "TensorFlow"],
+      posted: "1 week ago",
+      logo: "🤖",
+    },
   ];
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'accepted':
+      case "accepted":
         return <CheckCircle className="w-4 h-4 text-success" />;
-      case 'rejected':
+      case "rejected":
         return <XCircle className="w-4 h-4 text-destructive" />;
       default:
         return <Clock className="w-4 h-4 text-warning" />;
@@ -85,12 +91,12 @@ export default function StudentDashboard() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'accepted':
-        return 'bg-success text-success-foreground';
-      case 'rejected':
-        return 'bg-destructive text-destructive-foreground';
+      case "accepted":
+        return "bg-success text-success-foreground";
+      case "rejected":
+        return "bg-destructive text-destructive-foreground";
       default:
-        return 'bg-warning text-warning-foreground';
+        return "bg-warning text-warning-foreground";
     }
   };
 
@@ -102,14 +108,14 @@ export default function StudentDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-foreground">
-                Welcome back, {profile?.firstName || 'Student'}! 👋
+                Welcome back, {profile?.firstName || "Student"}! 👋
               </h1>
               <p className="text-muted-foreground mt-2">
                 Track your applications and discover new opportunities
               </p>
             </div>
             <Button asChild>
-              <Link to="/student/browse">
+              <Link to="/browse-jobs">
                 <Search className="w-4 h-4 mr-2" />
                 Browse Jobs
               </Link>
@@ -201,8 +207,12 @@ export default function StudentDashboard() {
                           <Building className="w-6 h-6 text-primary" />
                         </div>
                         <div>
-                          <h4 className="font-medium">{application.jobTitle}</h4>
-                          <p className="text-sm text-muted-foreground">{application.company}</p>
+                          <h4 className="font-medium">
+                            {application.jobTitle}
+                          </h4>
+                          <p className="text-sm text-muted-foreground">
+                            {application.company}
+                          </p>
                           <div className="flex items-center space-x-3 mt-1">
                             <span className="flex items-center text-xs text-muted-foreground">
                               <MapPin className="w-3 h-3 mr-1" />
@@ -218,7 +228,9 @@ export default function StudentDashboard() {
                       <div className="flex items-center space-x-3">
                         <Badge className={getStatusColor(application.status)}>
                           {getStatusIcon(application.status)}
-                          <span className="ml-1 capitalize">{application.status}</span>
+                          <span className="ml-1 capitalize">
+                            {application.status}
+                          </span>
                         </Badge>
                         <Button variant="ghost" size="sm">
                           <Eye className="w-4 h-4" />
@@ -229,7 +241,9 @@ export default function StudentDashboard() {
                 </div>
                 <div className="mt-4">
                   <Button variant="outline" className="w-full" asChild>
-                    <Link to="/student/applications">View All Applications</Link>
+                    <Link to="/student/applications">
+                      View All Applications
+                    </Link>
                   </Button>
                 </div>
               </CardContent>
@@ -253,7 +267,10 @@ export default function StudentDashboard() {
                     <span className="text-sm font-medium">85%</span>
                   </div>
                   <div className="w-full bg-secondary rounded-full h-2">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: '85%' }}></div>
+                    <div
+                      className="bg-primary h-2 rounded-full"
+                      style={{ width: "85%" }}
+                    ></div>
                   </div>
                   <Button className="w-full" variant="outline" asChild>
                     <Link to="/student/profile">Complete Profile</Link>
@@ -284,22 +301,32 @@ export default function StudentDashboard() {
                         <div className="text-2xl">{job.logo}</div>
                         <div className="flex-1">
                           <h4 className="font-medium text-sm">{job.title}</h4>
-                          <p className="text-xs text-muted-foreground">{job.company}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {job.company}
+                          </p>
                           <div className="flex items-center space-x-2 mt-2">
                             <Badge variant="secondary" className="text-xs">
                               {job.type}
                             </Badge>
-                            <span className="text-xs text-muted-foreground">{job.posted}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {job.posted}
+                            </span>
                           </div>
-                         <div className="flex flex-wrap gap-1 mt-2">
+                          <div className="flex flex-wrap gap-1 mt-2">
                             {job.skills.map((skill) => (
-                              <Badge key={skill} variant="outline" className="text-xs">
+                              <Badge
+                                key={skill}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {skill}
                               </Badge>
                             ))}
                           </div>
                           <div className="flex gap-2 mt-3">
-                            <Button size="sm" className="flex-1">Apply</Button>
+                            <Button size="sm" className="flex-1">
+                              Apply
+                            </Button>
                             <Button variant="outline" size="sm" asChild>
                               <Link to="/company/1">View Company</Link>
                             </Button>
