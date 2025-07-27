@@ -100,6 +100,14 @@ function AppRoutes() {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/student/browse" 
+          element={
+            <ProtectedRoute role="student">
+              <BrowseJobs />
+            </ProtectedRoute>
+          } 
+        />
         
         {/* Employer Routes */}
         <Route 
