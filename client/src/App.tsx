@@ -18,6 +18,7 @@ import EmployerDashboard from "./pages/employer/Dashboard";
 import EmployerProfile from "./pages/employer/Profile";
 import EmployerBrowseTalents from "./pages/employer/BrowseTalents";
 import PostJob from "./pages/employer/PostJob";
+import StudentApplicationPage from "./pages/student/ApplicationPage";
 import CompanyDetails from "./pages/CompanyDetails";
 import NotFound from "./pages/NotFound";
 
@@ -102,6 +103,11 @@ function AppRoutes() {
         <Route path="/student/companies">
           <ProtectedRoute role="student">
             <StudentCompanies />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/apply/:jobId">
+          <ProtectedRoute role="student">
+            <StudentApplicationPage />
           </ProtectedRoute>
         </Route>
         
